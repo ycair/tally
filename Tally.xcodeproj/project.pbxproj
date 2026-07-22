@@ -23,6 +23,17 @@
 		A10015 /* JarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20025; };
 		A10016 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20026; };
 		A10017 /* ReconciliationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20027; };
+		A10018 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20030; };
+		A10019 /* TodayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20031; };
+		A10020 /* DayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20032; };
+		A10021 /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20033; };
+		A10022 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20034; };
+		A10023 /* JarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20035; };
+		A10024 /* JarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20036; };
+		A10025 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20037; };
+		A10026 /* IncomeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20038; };
+		A10027 /* FixedCostFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20039; };
+		A10028 /* ReconciliationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20040; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +54,17 @@
 		A20025 /* JarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarsViewModel.swift; sourceTree = "<group>"; };
 		A20026 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A20027 /* ReconciliationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconciliationViewModel.swift; sourceTree = "<group>"; };
+		A20030 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Today/TodayView.swift; sourceTree = SOURCE_ROOT; };
+		A20031 /* TodayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Today/TodayHeaderView.swift; sourceTree = SOURCE_ROOT; };
+		A20032 /* DayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Today/DayCardView.swift; sourceTree = SOURCE_ROOT; };
+		A20033 /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Today/DayDetailView.swift; sourceTree = SOURCE_ROOT; };
+		A20034 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Recording/RecordingView.swift; sourceTree = SOURCE_ROOT; };
+		A20035 /* JarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Jars/JarsView.swift; sourceTree = SOURCE_ROOT; };
+		A20036 /* JarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Jars/JarDetailView.swift; sourceTree = SOURCE_ROOT; };
+		A20037 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/SettingsView.swift; sourceTree = SOURCE_ROOT; };
+		A20038 /* IncomeFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/IncomeFormView.swift; sourceTree = SOURCE_ROOT; };
+		A20039 /* FixedCostFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/FixedCostFormView.swift; sourceTree = SOURCE_ROOT; };
+		A20040 /* ReconciliationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/ReconciliationView.swift; sourceTree = SOURCE_ROOT; };
 		A20007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,17 +142,51 @@
 			isa = PBXGroup;
 			children = (
 				A40007 /* Components */,
+				A40008 /* Today */,
+				A40009 /* Recording */,
+				A40010 /* Jars */,
+				A40011 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 		A40007 /* Components */ = {
 			isa = PBXGroup;
+			children = (A20022 /* TallyTheme.swift */);
+			path = Components; sourceTree = "<group>";
+		};
+		A40008 /* Today */ = {
+			isa = PBXGroup;
 			children = (
-				A20022 /* TallyTheme.swift */,
+				A20030 /* TodayView.swift */,
+				A20031 /* TodayHeaderView.swift */,
+				A20032 /* DayCardView.swift */,
+				A20033 /* DayDetailView.swift */,
 			);
-			path = Components;
-			sourceTree = "<group>";
+			path = Today; sourceTree = "<group>";
+		};
+		A40009 /* Recording */ = {
+			isa = PBXGroup;
+			children = (A20034 /* RecordingView.swift */);
+			path = Recording; sourceTree = "<group>";
+		};
+		A40010 /* Jars */ = {
+			isa = PBXGroup;
+			children = (
+				A20035 /* JarsView.swift */,
+				A20036 /* JarDetailView.swift */,
+			);
+			path = Jars; sourceTree = "<group>";
+		};
+		A40011 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A20037 /* SettingsView.swift */,
+				A20038 /* IncomeFormView.swift */,
+				A20039 /* FixedCostFormView.swift */,
+				A20040 /* ReconciliationView.swift */,
+			);
+			path = Settings; sourceTree = "<group>";
 		};
 		A40008 /* TallyTests */ = {
 			isa = PBXGroup;
@@ -219,6 +275,17 @@
 				A10015 /* JarsViewModel.swift in Sources */,
 				A10016 /* SettingsViewModel.swift in Sources */,
 				A10017 /* ReconciliationViewModel.swift in Sources */,
+				A10018 /* TodayView.swift in Sources */,
+				A10019 /* TodayHeaderView.swift in Sources */,
+				A10020 /* DayCardView.swift in Sources */,
+				A10021 /* DayDetailView.swift in Sources */,
+				A10022 /* RecordingView.swift in Sources */,
+				A10023 /* JarsView.swift in Sources */,
+				A10024 /* JarDetailView.swift in Sources */,
+				A10025 /* SettingsView.swift in Sources */,
+				A10026 /* IncomeFormView.swift in Sources */,
+				A10027 /* FixedCostFormView.swift in Sources */,
+				A10028 /* ReconciliationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
