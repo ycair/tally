@@ -18,6 +18,11 @@
 		A10010 /* FinancialMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20020; };
 		A10011 /* BudgetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20021; };
 		A10012 /* TallyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20022; };
+		A10013 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20023; };
+		A10014 /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20024; };
+		A10015 /* JarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20025; };
+		A10016 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20026; };
+		A10017 /* ReconciliationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20027; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +38,11 @@
 		A20020 /* FinancialMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMonth.swift; sourceTree = "<group>"; };
 		A20021 /* BudgetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCalculator.swift; sourceTree = "<group>"; };
 		A20022 /* TallyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyTheme.swift; sourceTree = "<group>"; };
+		A20023 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		A20024 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		A20025 /* JarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarsViewModel.swift; sourceTree = "<group>"; };
+		A20026 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A20027 /* ReconciliationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconciliationViewModel.swift; sourceTree = "<group>"; };
 		A20007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +107,11 @@
 		A40005 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A20023 /* TodayViewModel.swift */,
+				A20024 /* RecordingViewModel.swift */,
+				A20025 /* JarsViewModel.swift */,
+				A20026 /* SettingsViewModel.swift */,
+				A20027 /* ReconciliationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -199,6 +214,11 @@
 				A10010 /* FinancialMonth.swift in Sources */,
 				A10011 /* BudgetCalculator.swift in Sources */,
 				A10012 /* TallyTheme.swift in Sources */,
+				A10013 /* TodayViewModel.swift in Sources */,
+				A10014 /* RecordingViewModel.swift in Sources */,
+				A10015 /* JarsViewModel.swift in Sources */,
+				A10016 /* SettingsViewModel.swift in Sources */,
+				A10017 /* ReconciliationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
