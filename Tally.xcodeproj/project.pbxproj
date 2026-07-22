@@ -9,14 +9,27 @@
 /* Begin PBXBuildFile section */
 		A10001 /* TallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20001; };
 		A10002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20002; };
-		A10003 /* ModelStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20003; };
+		A10004 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20010; };
+		A10005 /* FixedCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20011; };
+		A10006 /* IncomeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20012; };
+		A10007 /* MoneyJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20013; };
+		A10008 /* DailyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20014; };
+		A10009 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20015; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A20000 /* Tally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20001 /* TallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyApp.swift; sourceTree = "<group>"; };
 		A20002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A20003 /* ModelStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStubs.swift; sourceTree = "<group>"; };
+		A20010 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		A20011 /* FixedCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCost.swift; sourceTree = "<group>"; };
+		A20012 /* IncomeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEvent.swift; sourceTree = "<group>"; };
+		A20013 /* MoneyJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyJar.swift; sourceTree = "<group>"; };
+		A20014 /* DailyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBudget.swift; sourceTree = "<group>"; };
+		A20015 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A20004 /* Logic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Logic; sourceTree = "<group>"; };
+		A20005 /* ViewModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ViewModels; sourceTree = "<group>"; };
+		A20006 /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
 		A20004 /* Logic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Logic; sourceTree = "<group>"; };
 		A20005 /* ViewModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ViewModels; sourceTree = "<group>"; };
 		A20006 /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
@@ -49,11 +62,27 @@
 			children = (
 				A20001 /* TallyApp.swift */,
 				A20002 /* ContentView.swift */,
-				A20003 /* ModelStubs.swift */,
+				A40003 /* Models */,
+				A20004 /* Logic */,
+				A20005 /* ViewModels */,
+				A20006 /* Views */,
 				A20007 /* Assets.xcassets */,
 				A20008 /* Info.plist */,
 			);
 			path = Tally;
+			sourceTree = "<group>";
+		};
+		A40003 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20010 /* Expense.swift */,
+				A20011 /* FixedCost.swift */,
+				A20012 /* IncomeEvent.swift */,
+				A20013 /* MoneyJar.swift */,
+				A20014 /* DailyBudget.swift */,
+				A20015 /* AppSettings.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A40008 /* TallyTests */ = {
@@ -129,7 +158,12 @@
 			files = (
 				A10001 /* TallyApp.swift in Sources */,
 				A10002 /* ContentView.swift in Sources */,
-				A10003 /* ModelStubs.swift in Sources */,
+				A10004 /* Expense.swift in Sources */,
+				A10005 /* FixedCost.swift in Sources */,
+				A10006 /* IncomeEvent.swift in Sources */,
+				A10007 /* MoneyJar.swift in Sources */,
+				A10008 /* DailyBudget.swift in Sources */,
+				A10009 /* AppSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
