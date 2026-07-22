@@ -15,6 +15,9 @@
 		A10007 /* MoneyJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20013; };
 		A10008 /* DailyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20014; };
 		A10009 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20015; };
+		A10010 /* FinancialMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20020; };
+		A10011 /* BudgetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20021; };
+		A10012 /* TallyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20022; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,12 +30,9 @@
 		A20013 /* MoneyJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyJar.swift; sourceTree = "<group>"; };
 		A20014 /* DailyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBudget.swift; sourceTree = "<group>"; };
 		A20015 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		A20004 /* Logic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Logic; sourceTree = "<group>"; };
-		A20005 /* ViewModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ViewModels; sourceTree = "<group>"; };
-		A20006 /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
-		A20004 /* Logic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Logic; sourceTree = "<group>"; };
-		A20005 /* ViewModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ViewModels; sourceTree = "<group>"; };
-		A20006 /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
+		A20020 /* FinancialMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMonth.swift; sourceTree = "<group>"; };
+		A20021 /* BudgetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCalculator.swift; sourceTree = "<group>"; };
+		A20022 /* TallyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyTheme.swift; sourceTree = "<group>"; };
 		A20007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,9 +63,9 @@
 				A20001 /* TallyApp.swift */,
 				A20002 /* ContentView.swift */,
 				A40003 /* Models */,
-				A20004 /* Logic */,
-				A20005 /* ViewModels */,
-				A20006 /* Views */,
+				A40004 /* Logic */,
+				A40005 /* ViewModels */,
+				A40006 /* Views */,
 				A20007 /* Assets.xcassets */,
 				A20008 /* Info.plist */,
 			);
@@ -83,6 +83,38 @@
 				A20015 /* AppSettings.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A40004 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				A20020 /* FinancialMonth.swift */,
+				A20021 /* BudgetCalculator.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		A40005 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A40006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A40007 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A40007 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A20022 /* TallyTheme.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		A40008 /* TallyTests */ = {
@@ -164,6 +196,9 @@
 				A10007 /* MoneyJar.swift in Sources */,
 				A10008 /* DailyBudget.swift in Sources */,
 				A10009 /* AppSettings.swift in Sources */,
+				A10010 /* FinancialMonth.swift in Sources */,
+				A10011 /* BudgetCalculator.swift in Sources */,
+				A10012 /* TallyTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
