@@ -23,6 +23,8 @@ enum BudgetCalculator {
     }
 
     static func fixedCostContribution(for cost: FixedCost, on date: Date) -> Decimal {
+        guard !cost.hasDeposited else { return 0 }
+
         let start = FinancialMonth.start(of: date)
         let end = FinancialMonth.end(of: date)
         let allDays = FinancialMonth.datesInPeriod(from: start, to: end)
