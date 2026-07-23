@@ -39,8 +39,16 @@ struct SettingsView: View {
                                 Spacer()
                                 Text("-\(fmt(cost.amount))")
                             }
-                            Text("\(cost.type.label) · \(cost.bankCode) · \(cost.hasDeposited ? "已存" : "未存")")
-                                .font(.caption).foregroundColor(.secondary)
+                            HStack(spacing: 4) {
+                                Text(cost.type.label)
+                                Text("·")
+                                Text(cost.bankCode)
+                                Text("·")
+                                Text(cost.hasDeposited ? "已存" : "未存")
+                                    .foregroundColor(cost.hasDeposited ? TallyTheme.Colors.greenText : .orange)
+                                    .fontWeight(.medium)
+                            }
+                            .font(.caption).foregroundColor(.secondary)
                         }
                         .swipeActions {
                             Button(role: .destructive) {
