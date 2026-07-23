@@ -15,6 +15,8 @@ final class TodayViewModel: ObservableObject {
     @Published var dailyBudgets: [DailyBudget] = []
     @Published var expensesByDay: [Date: [Expense]] = [:]
     @Published var savingsBalance: Decimal = 0
+
+    var context: ModelContext?
     private var observer: NSObjectProtocol?
 
     func startObserving() {
