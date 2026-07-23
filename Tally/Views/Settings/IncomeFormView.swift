@@ -101,6 +101,7 @@ struct IncomeFormView: View {
                     let costs = (try? context.fetch(FetchDescriptor<FixedCost>())) ?? []
                     if let oldCost = costs.first(where: { $0.uuid == oldCostID }) {
                         oldCost.depositedAmount -= oldAmount
+                        oldCost.hasDeposited = oldCost.depositedAmount >= oldCost.amount
                     }
                 }
             case .budget: break
@@ -119,7 +120,7 @@ struct IncomeFormView: View {
                 event.jarID = nil
                 event.fixedCostID = cost.uuid
                 cost.depositedAmount += amount
-                cost.hasDeposited = true
+                cost.hasDeposited = cost.depositedAmount >= cost.amount
             }
         case .budget:
             event.jarID = nil
