@@ -6,20 +6,28 @@ struct SettingsView: View {
     @StateObject private var vm = SettingsViewModel()
     @State private var showIncomeForm = false
     @State private var showFixedCostForm = false
+    @State private var editingIncome: IncomeEvent?
+    @State private var editingCost: FixedCost?
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     ForEach(vm.incomeEvents) { event in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(event.name).font(.body)
-                                Text(fmtDate(event.date)).font(.caption).foregroundColor(.secondary)
+                        Button {
+                            editingIncome = event
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(event.name).font(.body)
+                                    Text(fmtDate(event.date)).font(.caption).foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                Text("+\(fmt(event.amount))")
                             }
-                            Spacer()
-                            Text("+\(fmt(event.amount))")
+                            .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .swipeActions {
                             Button(role: .destructive) {
                                 vm.deleteIncome(event, context: context)
@@ -33,23 +41,29 @@ struct SettingsView: View {
 
                 Section {
                     ForEach(vm.fixedCosts) { cost in
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(cost.name).font(.body)
-                                Spacer()
-                                Text("-\(fmt(cost.amount))")
+                        Button {
+                            editingCost = cost
+                        } label: {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(cost.name).font(.body)
+                                    Spacer()
+                                    Text("-\(fmt(cost.amount))")
+                                }
+                                HStack(spacing: 4) {
+                                    Text(cost.type.label)
+                                    Text("·")
+                                    Text(cost.bankCode)
+                                    Text("·")
+                                    Text(cost.hasDeposited ? "已存" : "未存")
+                                        .foregroundColor(cost.hasDeposited ? TallyTheme.Colors.greenText : .orange)
+                                        .fontWeight(.medium)
+                                }
+                                .font(.caption).foregroundColor(.secondary)
                             }
-                            HStack(spacing: 4) {
-                                Text(cost.type.label)
-                                Text("·")
-                                Text(cost.bankCode)
-                                Text("·")
-                                Text(cost.hasDeposited ? "已存" : "未存")
-                                    .foregroundColor(cost.hasDeposited ? TallyTheme.Colors.greenText : .orange)
-                                    .fontWeight(.medium)
-                            }
-                            .font(.caption).foregroundColor(.secondary)
+                            .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .swipeActions {
                             Button(role: .destructive) {
                                 vm.deleteFixedCost(cost, context: context)
@@ -80,8 +94,18 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("設定")
-            .sheet(isPresented: $showIncomeForm) { IncomeFormView { vm.refresh(context: context) } }
-            .sheet(isPresented: $showFixedCostForm) { FixedCostFormView { vm.refresh(context: context) } }
+            .sheet(isPresented: $showIncomeForm) {
+                IncomeFormView { vm.refresh(context: context) }
+            }
+            .sheet(item: $editingIncome) { event in
+                IncomeFormView(existingEvent: event) { vm.refresh(context: context) }
+            }
+            .sheet(isPresented: $showFixedCostForm) {
+                FixedCostFormView { vm.refresh(context: context) }
+            }
+            .sheet(item: $editingCost) { cost in
+                FixedCostFormView(existingCost: cost) { vm.refresh(context: context) }
+            }
             .onAppear { vm.refresh(context: context) }
         }
     }
