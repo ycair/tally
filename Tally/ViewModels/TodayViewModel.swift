@@ -21,7 +21,9 @@ final class TodayViewModel: ObservableObject {
     func startObserving() {
         observer = NotificationCenter.default.addObserver(
             forName: .tallyDataChanged, object: nil, queue: .main) { [weak self] _ in
-            self?.refresh()
+            Task { @MainActor in
+                self?.refresh()
+            }
         }
     }
 
