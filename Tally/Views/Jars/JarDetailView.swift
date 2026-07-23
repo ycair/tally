@@ -6,6 +6,10 @@ struct JarDetailView: View {
     @Environment(\.modelContext) private var context
     @State private var incomes: [IncomeEvent] = []
     @State private var expenses: [Expense] = []
+    @State private var showEdit = false
+    @State private var editName = ""
+    @State private var editBankCode = ""
+    @State private var editAccount = ""
 
     var body: some View {
         List {
@@ -40,9 +44,30 @@ struct JarDetailView: View {
                     }
                 }
             }
+
+            Section {
+                Button("編輯罐子") {
+                    editName = jar.name
+                    editBankCode = jar.bankCode
+                    editAccount = jar.accountNumber
+                    showEdit = true
+                }
+            }
         }
         .navigationTitle(jar.name)
         .onAppear { loadTransactions() }
+        .alert("編輯零錢罐", isPresented: $showEdit) {
+            TextField("名稱", text: $editName)
+            TextField("銀行代碼", text: $editBankCode)
+            TextField("帳號", text: $editAccount)
+            Button("取消", role: .cancel) {}
+            Button("儲存") {
+                jar.name = editName
+                jar.bankCode = editBankCode
+                jar.accountNumber = editAccount
+                try? context.save()
+            }
+        }
     }
 
     private func loadTransactions() {
