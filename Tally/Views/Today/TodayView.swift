@@ -40,16 +40,40 @@ struct TodayView: View {
                 }
 
                 // Floating + button
-                Button {
-                    showRecording = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2.weight(.semibold))
-                        .foregroundColor(.white)
-                        .frame(width: 56, height: 56)
-                        .background(TallyTheme.Colors.accent)
-                        .clipShape(Circle())
-                        .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
+                HStack(spacing: 12) {
+                    // Debug: direct insert test
+                    Button {
+                        let expense = Expense(name: "測試支出 \(Date().formatted(date: .omitted, time: .shortened))",
+                                              amount: 100, date: Date())
+                        context.insert(expense)
+                        do {
+                            try context.save()
+                            print("✅ Direct save succeeded")
+                            viewModel.refresh()
+                        } catch {
+                            print("❌ Direct save failed: \(error)")
+                        }
+                    } label: {
+                        Image(systemName: "ladybug")
+                            .font(.caption)
+                            .foregroundColor(.white)
+                            .frame(width: 36, height: 36)
+                            .background(Color.orange)
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
+                    }
+
+                    Button {
+                        showRecording = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.title2.weight(.semibold))
+                            .foregroundColor(.white)
+                            .frame(width: 56, height: 56)
+                            .background(TallyTheme.Colors.accent)
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
+                    }
                 }
                 .padding(.trailing, 20)
                 .padding(.bottom, 20)
