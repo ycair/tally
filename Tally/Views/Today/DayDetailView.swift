@@ -5,19 +5,26 @@ struct DayDetailView: View {
     let date: Date
     @Environment(\.modelContext) private var context
     @State private var expenses: [Expense] = []
+    @State private var editingExpense: Expense?
 
     var body: some View {
         List {
             if expenses.isEmpty { Text("這天沒有記錄").foregroundColor(.secondary) }
             ForEach(expenses) { expense in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(expense.name).font(.body)
-                        Text(expense.date, style: .time).font(.caption).foregroundColor(.secondary)
+                Button {
+                    editingExpense = expense
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(expense.name).font(.body)
+                            Text(expense.date, style: .time).font(.caption).foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        Text("-\(formatted(expense.amount))").font(.body).monospacedDigit()
                     }
-                    Spacer()
-                    Text("-\(formatted(expense.amount))").font(.body).monospacedDigit()
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
                         context.delete(expense); try? context.save(); loadExpenses()
@@ -27,6 +34,12 @@ struct DayDetailView: View {
             }
         }
         .navigationTitle(dateLabel).navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $editingExpense) { expense in
+            RecordingView(existingExpense: expense) {
+                loadExpenses()
+                NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
+            }
+        }
         .onAppear { loadExpenses() }
     }
 
