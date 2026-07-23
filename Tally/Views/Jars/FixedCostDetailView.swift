@@ -66,9 +66,9 @@ struct FixedCostDetailView: View {
 
     private func loadTransactions() {
         let allIncomes = (try? context.fetch(FetchDescriptor<IncomeEvent>())) ?? []
-        incomes = allIncomes.filter { $0.destination == .fixedCost && $0.fixedCostID == cost.persistentModelID.entityName }
+        incomes = allIncomes.filter { $0.destination == .fixedCost && $0.fixedCostID == cost.uuid }
         let allExpenses = (try? context.fetch(FetchDescriptor<Expense>())) ?? []
-        expenses = allExpenses.filter { $0.source == .fixedCost && $0.fixedCostID == cost.persistentModelID.entityName }
+        expenses = allExpenses.filter { $0.source == .fixedCost && $0.fixedCostID == cost.uuid }
     }
 
     private func formatted(_ v: Decimal) -> String {

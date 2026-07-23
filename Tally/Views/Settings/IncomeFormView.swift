@@ -79,19 +79,45 @@ struct IncomeFormView: View {
         let event = existingEvent ?? IncomeEvent(name: name, amount: amount, date: date, destination: destination)
         if existingEvent == nil { context.insert(event) }
 
+        // Reverse old destination if editing
+        if let oldEvent = existingEvent {
+            let oldAmount = oldEvent.amount
+            switch oldEvent.destination {
+            case .jar:
+                if let oldJarID = oldEvent.jarID {
+                    let jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
+                    if let oldJar = jars.first(where: { $0.persistentModelID.entityName == oldJarID }) {
+                        oldJar.balance -= oldAmount
+                    }
+                }
+            case .fixedCost:
+                if let oldCostID = oldEvent.fixedCostID {
+                    let costs = (try? context.fetch(FetchDescriptor<FixedCost>())) ?? []
+                    if let oldCost = costs.first(where: { $0.uuid == oldCostID }) {
+                        oldCost.depositedAmount -= oldAmount
+                    }
+                }
+            case .budget: break
+            }
+        }
+
         switch destination {
         case .jar:
             if let jar = selectedJar {
                 event.jarID = jar.persistentModelID.entityName
+                event.fixedCostID = nil
                 jar.balance += amount
             }
         case .fixedCost:
             if let cost = selectedFixedCost {
-                event.fixedCostID = cost.persistentModelID.entityName
+                event.jarID = nil
+                event.fixedCostID = cost.uuid
                 cost.depositedAmount += amount
                 cost.hasDeposited = true
             }
-        case .budget: break
+        case .budget:
+            event.jarID = nil
+            event.fixedCostID = nil
         }
 
         try? context.save()

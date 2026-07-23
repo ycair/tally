@@ -47,6 +47,7 @@ final class FixedCost {
     var accountNumber: String
     var hasDeposited: Bool
     var depositedAmount: Decimal = 0
+    var uuid: String = UUID().uuidString
 
     var type: FixedCostType {
         get { FixedCostType(rawValue: typeRaw) ?? .monthly }

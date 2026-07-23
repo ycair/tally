@@ -62,7 +62,7 @@ final class RecordingViewModel: ObservableObject {
             location: location.isEmpty ? nil : location,
             source: source,
             jarID: source == .jar ? selectedJar?.persistentModelID.entityName : nil,
-            fixedCostID: source == .fixedCost ? selectedFixedCost?.persistentModelID.entityName : nil)
+            fixedCostID: source == .fixedCost ? selectedFixedCost?.uuid : nil)
 
         for draft in lineItems where !draft.name.isEmpty {
             expense.lineItems.append(
