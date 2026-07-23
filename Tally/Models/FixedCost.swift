@@ -46,6 +46,7 @@ final class FixedCost {
     var bankCode: String
     var accountNumber: String
     var hasDeposited: Bool
+    var depositedAmount: Decimal
 
     var type: FixedCostType {
         get { FixedCostType(rawValue: typeRaw) ?? .monthly }
@@ -59,6 +60,7 @@ final class FixedCost {
 
     init(name: String, amount: Decimal, type: FixedCostType,
          bankCode: String, accountNumber: String, hasDeposited: Bool = false,
+         depositedAmount: Decimal = 0,
          startMonth: Int? = nil, endMonth: Int? = nil,
          dueMonth: Int? = nil, dueDay: Int? = nil,
          amortizeToMonthly: Bool = false,
@@ -69,6 +71,7 @@ final class FixedCost {
         self.bankCode = bankCode
         self.accountNumber = accountNumber
         self.hasDeposited = hasDeposited
+        self.depositedAmount = depositedAmount
         self.startMonth = startMonth
         self.endMonth = endMonth
         self.dueMonth = dueMonth

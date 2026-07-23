@@ -6,11 +6,13 @@ final class JarsViewModel: ObservableObject {
     @Published var jars: [MoneyJar] = []
     @Published var totalBalance: Decimal = 0
     @Published var savingsBalance: Decimal = 0
+    @Published var fixedCosts: [FixedCost] = []
 
     func refresh(context: ModelContext) {
         jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
         totalBalance = jars.reduce(0) { $0 + $1.balance }
         savingsBalance = AppSettings.fetchOrCreate(context: context).savingsBalance
+        fixedCosts = (try? context.fetch(FetchDescriptor<FixedCost>())) ?? []
     }
 
     func createJar(name: String, bankCode: String, accountNumber: String, context: ModelContext) {
