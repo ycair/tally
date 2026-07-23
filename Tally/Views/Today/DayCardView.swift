@@ -11,15 +11,32 @@ struct DayCardView: View {
                 Spacer()
                 Text(statusLabel).font(.caption).foregroundColor(statusColor)
             }
-            ForEach(expenses.prefix(3)) { expense in
-                HStack {
-                    Text(expense.name).font(.subheadline)
-                    Spacer()
-                    Text("-\(formatted(expense.amount))").font(.subheadline).monospacedDigit()
+
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("額度").font(.caption2).foregroundColor(.secondary)
+                    Text("NT$ \(formatted(budget.baseAmount))").font(.subheadline)
+                }
+                Spacer()
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("已使用").font(.caption2).foregroundColor(.secondary)
+                    Text("NT$ \(formatted(budget.spent))").font(.subheadline)
+                        .foregroundColor(budget.spent > budget.baseAmount ? TallyTheme.Colors.redText : .primary)
                 }
             }
-            if expenses.count > 3 {
-                Text("還有 \(expenses.count - 3) 筆...").font(.caption).foregroundColor(.secondary)
+
+            if !expenses.isEmpty {
+                Divider()
+                ForEach(expenses.prefix(3)) { expense in
+                    HStack {
+                        Text(expense.name).font(.subheadline)
+                        Spacer()
+                        Text("-\(formatted(expense.amount))").font(.subheadline).monospacedDigit()
+                    }
+                }
+                if expenses.count > 3 {
+                    Text("還有 \(expenses.count - 3) 筆...").font(.caption).foregroundColor(.secondary)
+                }
             }
         }
         .padding(TallyTheme.Spacing.md)

@@ -60,12 +60,27 @@ final class TodayViewModel: ObservableObject {
         let existingMap = Dictionary(uniqueKeysWithValues: existing.map { ($0.date, $0) })
 
         dailyBudgets = allDays.compactMap { day in
-            existingMap[day] ?? DailyBudget(date: day)
+            if let budget = existingMap[day] {
+                return budget
+            }
+            let newBudget = DailyBudget(date: day)
+            context.insert(newBudget)
+            try? context.save()
+            return newBudget
         }.filter { $0.date <= today }
 
         let dayExpenses = expenses.filter { $0.source == .dailyBudget }
         expensesByDay = Dictionary(grouping: dayExpenses) {
             Calendar.current.startOfDay(for: $0.date)
+        }
+
+        if let todayBudget = dailyBudgets.first(where: {
+            Calendar.current.isDate($0.date, inSameDayAs: today)
+        }) {
+            todayBudget.baseAmount = todayBaseAmount
+            todayBudget.penalty = todayPenalty
+            todayBudget.spent = todaySpent
+            try? context.save()
         }
 
         savingsBalance = AppSettings.fetchOrCreate(context: context).savingsBalance
