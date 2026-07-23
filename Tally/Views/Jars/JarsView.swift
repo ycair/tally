@@ -14,10 +14,15 @@ struct JarsView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 4) {
                     HStack(spacing: 24) {
-                        VStack(spacing: 2) {
-                            Text("存款").font(.caption).foregroundColor(.secondary)
-                            Text("NT$ \(formatted(vm.savingsBalance))").font(.headline).monospacedDigit()
+                        NavigationLink {
+                            SavingsDetailView()
+                        } label: {
+                            VStack(spacing: 2) {
+                                Text("存款").font(.caption).foregroundColor(.secondary)
+                                Text("NT$ \(formatted(vm.savingsBalance))").font(.headline).monospacedDigit()
+                            }
                         }
+                        .buttonStyle(.plain)
                         Divider().frame(height: 32)
                         VStack(spacing: 2) {
                             Text("零錢罐").font(.caption).foregroundColor(.secondary)

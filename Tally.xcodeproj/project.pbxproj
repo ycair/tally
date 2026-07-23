@@ -35,6 +35,7 @@
 		A10027 /* Tally/Views/Settings/FixedCostFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20039 /* Tally/Views/Settings/FixedCostFormView.swift */; };
 		A10028 /* Tally/Views/Settings/ReconciliationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20040 /* Tally/Views/Settings/ReconciliationView.swift */; };
 		A10029 /* Tally/Views/Jars/FixedCostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20041 /* Tally/Views/Jars/FixedCostDetailView.swift */; };
+		A10030 /* Tally/Views/Jars/SavingsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20042 /* Tally/Views/Jars/SavingsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		A20039 /* Tally/Views/Settings/FixedCostFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/FixedCostFormView.swift; sourceTree = SOURCE_ROOT; };
 		A20040 /* Tally/Views/Settings/ReconciliationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Settings/ReconciliationView.swift; sourceTree = SOURCE_ROOT; };
 		A20041 /* Tally/Views/Jars/FixedCostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Jars/FixedCostDetailView.swift; sourceTree = SOURCE_ROOT; };
+		A20042 /* Tally/Views/Jars/SavingsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally/Views/Jars/SavingsDetailView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				A20035 /* Tally/Views/Jars/JarsView.swift */,
 				A20036 /* Tally/Views/Jars/JarDetailView.swift */,
 				A20041 /* Tally/Views/Jars/FixedCostDetailView.swift */,
+				A20042 /* Tally/Views/Jars/SavingsDetailView.swift */,
 			);
 			path = Jars;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				A10027 /* Tally/Views/Settings/FixedCostFormView.swift in Sources */,
 				A10028 /* Tally/Views/Settings/ReconciliationView.swift in Sources */,
 				A10029 /* Tally/Views/Jars/FixedCostDetailView.swift in Sources */,
+				A10030 /* Tally/Views/Jars/SavingsDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
