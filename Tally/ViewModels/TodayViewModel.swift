@@ -16,11 +16,13 @@ final class TodayViewModel: ObservableObject {
     func refresh() {
         guard let context = context else { return }
         let today = Date()
+        let fmStart = FinancialMonth.start(of: today)
+        let fmEnd = FinancialMonth.end(of: today)
         settlePriorDays(context: context)
 
         let incomeEvents = fetchAll(IncomeEvent.self, context: context)
         let fixedCosts = fetchAll(FixedCost.self, context: context)
-        let expenses = fetchAll(Expense.self, context: context)
+        let expenses = fetchExpensesInRange(from: fmStart, to: fmEnd, context: context)
 
         let result = BudgetCalculator.computeDaily(
             incomeEvents: incomeEvents, fixedCosts: fixedCosts,
@@ -33,14 +35,12 @@ final class TodayViewModel: ObservableObject {
         todayProgress = BudgetCalculator.progress(
             baseAmount: result.baseAmount, penalty: result.penalty, spent: result.spent)
 
-        let fmStart = FinancialMonth.start(of: today)
-        let fmEnd = FinancialMonth.end(of: today)
         let allDays = FinancialMonth.datesInPeriod(from: fmStart, to: fmEnd)
+        let existing = fetchBudgetsInRange(from: fmStart, to: fmEnd, context: context)
+        let existingMap = Dictionary(uniqueKeysWithValues: existing.map { ($0.date, $0) })
 
         dailyBudgets = allDays.compactMap { day in
-            let descriptor = FetchDescriptor<DailyBudget>(
-                predicate: #Predicate { $0.date == day })
-            return (try? context.fetch(descriptor).first) ?? DailyBudget(date: day)
+            existingMap[day] ?? DailyBudget(date: day)
         }.filter { $0.date <= today }
 
         let dayExpenses = expenses.filter { $0.source == .dailyBudget }
@@ -76,10 +76,22 @@ final class TodayViewModel: ObservableObject {
         (try? context.fetch(FetchDescriptor<T>())) ?? []
     }
 
+    private func fetchExpensesInRange(from start: Date, to end: Date, context: ModelContext) -> [Expense] {
+        let descriptor = FetchDescriptor<Expense>(
+            predicate: #Predicate { $0.date >= start && $0.date <= end })
+        return (try? context.fetch(descriptor)) ?? []
+    }
+
+    private func fetchBudgetsInRange(from start: Date, to end: Date, context: ModelContext) -> [DailyBudget] {
+        let descriptor = FetchDescriptor<DailyBudget>(
+            predicate: #Predicate { $0.date >= start && $0.date <= end })
+        return (try? context.fetch(descriptor)) ?? []
+    }
+
     private func fetchExpenses(for date: Date, context: ModelContext) -> [Expense] {
         let startOfDay = Calendar.current.startOfDay(for: date)
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
-        var descriptor = FetchDescriptor<Expense>(
+        let descriptor = FetchDescriptor<Expense>(
             predicate: #Predicate { $0.date >= startOfDay && $0.date < endOfDay })
         return (try? context.fetch(descriptor)) ?? []
     }

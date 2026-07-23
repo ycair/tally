@@ -112,8 +112,6 @@ enum BudgetCalculator {
         } else if leftover == 0 {
             return (0, .white, 0)
         } else {
-            let remaining = FinancialMonth.remainingDays(from: date)
-            let futureCount = max(Decimal(remaining.count - 1), 1)
             return (leftover, .red, 0)
         }
     }

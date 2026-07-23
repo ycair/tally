@@ -37,7 +37,7 @@ struct DayDetailView: View {
     private func loadExpenses() {
         let sod = Calendar.current.startOfDay(for: date)
         let eod = Calendar.current.date(byAdding: .day, value: 1, to: sod)!
-        var d = FetchDescriptor<Expense>(predicate: #Predicate { $0.date >= sod && $0.date < eod })
+        let d = FetchDescriptor<Expense>(predicate: #Predicate { $0.date >= sod && $0.date < eod })
         expenses = (try? context.fetch(d)) ?? []
     }
 
