@@ -24,8 +24,8 @@ struct TodayView: View {
                     }
                     .padding(.vertical, 12).frame(maxWidth: .infinity)
                     .background(TallyTheme.Colors.secondaryBackground)
-                    .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
-                        .onEnded { if $0.translation.height < -50 { showRecording = true } })
+                    .simultaneousGesture(DragGesture(minimumDistance: 20)
+                        .onEnded { if $0.translation.height < -40 { showRecording = true } })
 
                     LazyVStack(spacing: 12) {
                         ForEach(viewModel.dailyBudgets) { budget in
