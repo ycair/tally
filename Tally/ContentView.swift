@@ -13,7 +13,3 @@ struct ContentView: View {
         .tint(TallyTheme.Colors.accent)
     }
 }
-
-#Preview {
-    ContentView()
-}
