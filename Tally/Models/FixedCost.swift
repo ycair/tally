@@ -46,7 +46,7 @@ final class FixedCost {
     var bankCode: String
     var accountNumber: String
     var hasDeposited: Bool
-    var depositedAmount: Decimal
+    var depositedAmount: Decimal = 0
 
     var type: FixedCostType {
         get { FixedCostType(rawValue: typeRaw) ?? .monthly }
