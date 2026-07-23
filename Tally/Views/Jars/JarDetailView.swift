@@ -72,9 +72,9 @@ struct JarDetailView: View {
 
     private func loadTransactions() {
         let allIncomes = (try? context.fetch(FetchDescriptor<IncomeEvent>())) ?? []
-        incomes = allIncomes.filter { $0.destination == .jar && $0.jarID == jar.persistentModelID.entityName }
+        incomes = allIncomes.filter { $0.destination == .jar && $0.jarID == jar.uuid }
         let allExpenses = (try? context.fetch(FetchDescriptor<Expense>())) ?? []
-        expenses = allExpenses.filter { $0.source == .jar && $0.jarID == jar.persistentModelID.entityName }
+        expenses = allExpenses.filter { $0.source == .jar && $0.jarID == jar.uuid }
     }
 
     private func formatted(_ v: Decimal) -> String {

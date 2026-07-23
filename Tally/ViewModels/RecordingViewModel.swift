@@ -61,7 +61,7 @@ final class RecordingViewModel: ObservableObject {
             receiptNumber: receiptNumber.isEmpty ? nil : receiptNumber,
             location: location.isEmpty ? nil : location,
             source: source,
-            jarID: source == .jar ? selectedJar?.persistentModelID.entityName : nil,
+            jarID: source == .jar ? selectedJar?.uuid : nil,
             fixedCostID: source == .fixedCost ? selectedFixedCost?.uuid : nil)
 
         for draft in lineItems where !draft.name.isEmpty {
@@ -93,7 +93,7 @@ final class RecordingViewModel: ObservableObject {
         expense.receiptNumber = receiptNumber.isEmpty ? nil : receiptNumber
         expense.location = location.isEmpty ? nil : location
         expense.source = source
-        expense.jarID = source == .jar ? selectedJar?.persistentModelID.entityName : nil
+        expense.jarID = source == .jar ? selectedJar?.uuid : nil
         expense.lineItems.removeAll()
         for draft in lineItems where !draft.name.isEmpty {
             expense.lineItems.append(

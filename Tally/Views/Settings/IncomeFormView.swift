@@ -69,6 +69,12 @@ struct IncomeFormView: View {
                 if let e = existingEvent {
                     name = e.name; amountText = String(describing: e.amount)
                     date = e.date; destination = e.destination
+                    if e.destination == .jar, let jid = e.jarID {
+                        selectedJar = availableJars.first { $0.uuid == jid }
+                    }
+                    if e.destination == .fixedCost, let cid = e.fixedCostID {
+                        selectedFixedCost = availableFixedCosts.first { $0.uuid == cid }
+                    }
                 }
             }
         }
@@ -86,7 +92,7 @@ struct IncomeFormView: View {
             case .jar:
                 if let oldJarID = oldEvent.jarID {
                     let jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
-                    if let oldJar = jars.first(where: { $0.persistentModelID.entityName == oldJarID }) {
+                    if let oldJar = jars.first(where: { $0.uuid == oldJarID }) {
                         oldJar.balance -= oldAmount
                     }
                 }
@@ -104,7 +110,7 @@ struct IncomeFormView: View {
         switch destination {
         case .jar:
             if let jar = selectedJar {
-                event.jarID = jar.persistentModelID.entityName
+                event.jarID = jar.uuid
                 event.fixedCostID = nil
                 jar.balance += amount
             }

@@ -8,6 +8,7 @@ final class MoneyJar {
     var accountNumber: String
     var balance: Decimal
     var createdAt: Date
+    var uuid: String = UUID().uuidString
 
     init(name: String, bankCode: String, accountNumber: String,
          balance: Decimal = 0, createdAt: Date = Date()) {

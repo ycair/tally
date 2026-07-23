@@ -56,8 +56,8 @@ struct ReconciliationView: View {
     }
 
     private func binding(for jar: MoneyJar) -> Binding<String> {
-        Binding(get: { vm.jarActualTexts[jar.persistentModelID.entityName] ?? "" },
-                set: { vm.jarActualTexts[jar.persistentModelID.entityName] = $0 })
+        Binding(get: { vm.jarActualTexts[jar.uuid] ?? "" },
+                set: { vm.jarActualTexts[jar.uuid] = $0 })
     }
 
     private func fmt(_ v: Decimal) -> String {

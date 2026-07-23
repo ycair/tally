@@ -29,7 +29,7 @@ final class SettingsViewModel: ObservableObject {
         context.insert(event)
         if event.destination == .jar, let jarID = event.jarID {
             let jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
-            if let jar = jars.first(where: { $0.persistentModelID.entityName == jarID }) {
+            if let jar = jars.first(where: { $0.uuid == jarID }) {
                 jar.balance += event.amount
             }
         }

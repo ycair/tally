@@ -16,9 +16,7 @@ final class ReconciliationViewModel: ObservableObject {
 
         jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
         for jar in jars {
-            if jarActualTexts[jar.persistentModelID.entityName] == nil {
-                jarActualTexts[jar.persistentModelID.entityName] = ""
-            }
+            if jarActualTexts[jar.uuid] == nil { jarActualTexts[jar.uuid] = "" }
         }
     }
 
@@ -38,7 +36,7 @@ final class ReconciliationViewModel: ObservableObject {
         settings.lastVerifiedDate = now
 
         for jar in jars {
-            let jarID = jar.persistentModelID.entityName
+            let jarID = jar.uuid
             let actual = Decimal(string: jarActualTexts[jarID] ?? "") ?? 0
             let record = ReconciliationRecord(
                 date: now, type: jar.name,
