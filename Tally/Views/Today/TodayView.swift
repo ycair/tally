@@ -16,7 +16,9 @@ struct TodayView: View {
                             todayBaseAmount: viewModel.todayBaseAmount,
                             todayPenalty: viewModel.todayPenalty,
                             todaySpent: viewModel.todaySpent,
-                            todayProgress: viewModel.todayProgress)
+                            todayProgress: viewModel.todayProgress,
+                            daysRemaining: viewModel.monthDaysRemaining,
+                            totalDays: viewModel.monthTotalDays)
 
                         VStack(spacing: 4) {
                             RoundedRectangle(cornerRadius: 2).fill(Color.secondary.opacity(0.4))

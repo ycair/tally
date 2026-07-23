@@ -15,6 +15,8 @@ final class TodayViewModel: ObservableObject {
     @Published var dailyBudgets: [DailyBudget] = []
     @Published var expensesByDay: [Date: [Expense]] = [:]
     @Published var savingsBalance: Decimal = 0
+    @Published var monthDaysRemaining: Int = 0
+    @Published var monthTotalDays: Int = 0
 
     var context: ModelContext?
     private var observer: NSObjectProtocol?
@@ -84,6 +86,8 @@ final class TodayViewModel: ObservableObject {
         }
 
         savingsBalance = AppSettings.fetchOrCreate(context: context).savingsBalance
+        monthTotalDays = allDays.count
+        monthDaysRemaining = allDays.filter { $0 >= Calendar.current.startOfDay(for: today) }.count
     }
 
     private func settlePriorDays(context: ModelContext) {

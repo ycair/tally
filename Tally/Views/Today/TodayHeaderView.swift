@@ -6,6 +6,8 @@ struct TodayHeaderView: View {
     let todayPenalty: Decimal
     let todaySpent: Decimal
     let todayProgress: Double
+    let daysRemaining: Int
+    let totalDays: Int
     @State private var showDetail = false
 
     var body: some View {
@@ -39,6 +41,24 @@ struct TodayHeaderView: View {
             }.frame(height: 6).padding(.horizontal, 32)
 
             Text("\(Int(todayProgress * 100))% 已用")
+                .font(.caption2).foregroundColor(.secondary)
+
+            let daysPassed = totalDays - daysRemaining
+            let monthRatio = totalDays > 0 ? Double(daysPassed) / Double(totalDays) : 0
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(TallyTheme.Colors.progressTrack)
+                        .frame(height: 3)
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(Color.secondary.opacity(0.5))
+                        .frame(width: geo.size.width * monthRatio, height: 3)
+                }
+            }
+            .frame(height: 3)
+            .padding(.horizontal, 32)
+
+            Text("本月第 \(daysPassed)/\(totalDays) 天 · 剩 \(daysRemaining) 天")
                 .font(.caption2).foregroundColor(.secondary)
         }
         .padding(.vertical, TallyTheme.Spacing.lg)
