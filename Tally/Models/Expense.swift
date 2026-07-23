@@ -23,7 +23,7 @@ final class Expense {
     var sourceRaw: String
     var jarID: String?
 
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade, inverse: \LineItem.parent)
     var lineItems: [LineItem] = []
 
     var source: ExpenseSource {
