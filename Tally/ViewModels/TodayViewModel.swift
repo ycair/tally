@@ -71,7 +71,7 @@ final class TodayViewModel: ObservableObject {
             return newBudget
         }.filter { $0.date <= today }
 
-        let dayExpenses = expenses.filter { $0.source == .dailyBudget }
+        let dayExpenses = expenses.filter { $0.source == .dailyBudget || $0.source == .fixedCost }
         expensesByDay = Dictionary(grouping: dayExpenses) {
             Calendar.current.startOfDay(for: $0.date)
         }

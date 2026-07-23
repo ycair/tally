@@ -41,6 +41,14 @@ struct RecordingView: View {
                                 ForEach(vm.availableJars) { Text($0.name).tag($0 as MoneyJar?) }
                             }
                         }
+                        if vm.source == .fixedCost {
+                            Picker("固定花銷", selection: $vm.selectedFixedCost) {
+                                Text("選擇").tag(nil as FixedCost?)
+                                ForEach(vm.availableFixedCosts) { cost in
+                                    Text(cost.name).tag(cost as FixedCost?)
+                                }
+                            }
+                        }
                         DatePicker("時間", selection: $vm.date, displayedComponents: [.date, .hourAndMinute])
                         TextField("地點", text: $vm.location, prompt: Text("添加快取地點"))
                         TextField("發票號碼", text: $vm.receiptNumber, prompt: Text("輸入發票號碼"))
@@ -93,6 +101,7 @@ struct RecordingView: View {
             } message: { Text("已經有輸入內容，確定要捨棄嗎？") }
             .onAppear {
                 vm.availableJars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
+                vm.availableFixedCosts = (try? context.fetch(FetchDescriptor<FixedCost>())) ?? []
                 if let e = existingExpense { vm.load(e) }
             }
         }

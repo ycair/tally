@@ -16,7 +16,9 @@ final class RecordingViewModel: ObservableObject {
     @Published var location: String = ""
     @Published var source: ExpenseSource = .dailyBudget
     @Published var selectedJar: MoneyJar?
+    @Published var selectedFixedCost: FixedCost?
     @Published var availableJars: [MoneyJar] = []
+    @Published var availableFixedCosts: [FixedCost] = []
     @Published var lineItems: [LineItemDraft] = []
     @Published var showDiscardAlert = false
 
@@ -59,7 +61,8 @@ final class RecordingViewModel: ObservableObject {
             receiptNumber: receiptNumber.isEmpty ? nil : receiptNumber,
             location: location.isEmpty ? nil : location,
             source: source,
-            jarID: source == .jar ? selectedJar?.persistentModelID.entityName : nil)
+            jarID: source == .jar ? selectedJar?.persistentModelID.entityName : nil,
+            fixedCostID: source == .fixedCost ? selectedFixedCost?.persistentModelID.entityName : nil)
 
         for draft in lineItems where !draft.name.isEmpty {
             expense.lineItems.append(
@@ -69,6 +72,9 @@ final class RecordingViewModel: ObservableObject {
         context.insert(expense)
         if source == .jar, let jar = selectedJar {
             jar.balance -= expense.amount
+        }
+        if source == .fixedCost, let cost = selectedFixedCost {
+            cost.depositedAmount -= expense.amount
         }
         do {
             try context.save()

@@ -52,21 +52,25 @@ struct JarsView: View {
                     if !vm.fixedCosts.isEmpty {
                         Section("固定花銷專戶") {
                             ForEach(vm.fixedCosts) { cost in
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text(cost.name).font(.subheadline).fontWeight(.medium)
-                                            Text("\(cost.bankCode) \(cost.accountNumber)")
-                                                .font(.caption).foregroundColor(.secondary)
-                                        }
-                                        Spacer()
-                                        VStack(alignment: .trailing, spacing: 2) {
-                                            Text("\(formatted(cost.depositedAmount)) / \(formatted(cost.amount))")
-                                                .font(.subheadline).monospacedDigit()
-                                            Text(cost.hasDeposited ? "已存" : "未存")
-                                                .font(.caption2)
-                                                .foregroundColor(cost.hasDeposited ? TallyTheme.Colors.greenText : .orange)
-                                                .fontWeight(.medium)
+                                NavigationLink {
+                                    FixedCostDetailView(cost: cost)
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        HStack {
+                                            VStack(alignment: .leading, spacing: 2) {
+                                                Text(cost.name).font(.subheadline).fontWeight(.medium)
+                                                Text("\(cost.bankCode) \(cost.accountNumber)")
+                                                    .font(.caption).foregroundColor(.secondary)
+                                            }
+                                            Spacer()
+                                            VStack(alignment: .trailing, spacing: 2) {
+                                                Text("\(formatted(cost.depositedAmount)) / \(formatted(cost.amount))")
+                                                    .font(.subheadline).monospacedDigit()
+                                                Text(cost.hasDeposited ? "已存" : "未存")
+                                                    .font(.caption2)
+                                                    .foregroundColor(cost.hasDeposited ? TallyTheme.Colors.greenText : .orange)
+                                                    .fontWeight(.medium)
+                                            }
                                         }
                                     }
                                 }
