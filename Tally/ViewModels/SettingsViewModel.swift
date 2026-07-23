@@ -21,6 +21,10 @@ final class SettingsViewModel: ObservableObject {
         }
     }
 
+    private func notifyDataChanged() {
+        NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
+    }
+
     func addIncome(_ event: IncomeEvent, context: ModelContext) {
         context.insert(event)
         if event.destination == .jar, let jarID = event.jarID {
@@ -31,23 +35,27 @@ final class SettingsViewModel: ObservableObject {
         }
         try? context.save()
         refresh(context: context)
+        notifyDataChanged()
     }
 
     func deleteIncome(_ event: IncomeEvent, context: ModelContext) {
         context.delete(event)
         try? context.save()
         refresh(context: context)
+        notifyDataChanged()
     }
 
     func addFixedCost(_ cost: FixedCost, context: ModelContext) {
         context.insert(cost)
         try? context.save()
         refresh(context: context)
+        notifyDataChanged()
     }
 
     func deleteFixedCost(_ cost: FixedCost, context: ModelContext) {
         context.delete(cost)
         try? context.save()
         refresh(context: context)
+        notifyDataChanged()
     }
 }

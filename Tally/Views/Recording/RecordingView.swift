@@ -70,6 +70,7 @@ struct RecordingView: View {
                     if existingExpense != nil {
                         Button(role: .destructive) {
                             vm.delete(existingExpense!, context: context)
+                            NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
                             onDismiss?(); dismiss()
                         } label: { Text("刪除此筆") }.padding(.top)
                     }
@@ -100,6 +101,7 @@ struct RecordingView: View {
     private func save() {
         if let e = existingExpense { vm.update(e, context: context) }
         else { _ = vm.save(context: context) }
+        NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
         onDismiss?(); dismiss()
     }
 }

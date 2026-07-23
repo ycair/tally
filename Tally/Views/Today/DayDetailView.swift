@@ -21,6 +21,7 @@ struct DayDetailView: View {
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
                         context.delete(expense); try? context.save(); loadExpenses()
+                        NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
                     } label: { Label("刪除", systemImage: "trash") }
                 }
             }

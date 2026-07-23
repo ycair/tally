@@ -58,6 +58,7 @@ struct IncomeFormView: View {
             jar.balance += amount
         }
         try? context.save()
+        NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
         onSave(); dismiss()
     }
 }

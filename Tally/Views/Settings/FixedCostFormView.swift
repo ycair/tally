@@ -96,6 +96,7 @@ struct FixedCostFormView: View {
         cost.reserveMode = type == .scheduled ? reserveMode : nil
         if existingCost == nil { context.insert(cost) }
         try? context.save()
+        NotificationCenter.default.post(name: .tallyDataChanged, object: nil)
         onSave(); dismiss()
     }
 }

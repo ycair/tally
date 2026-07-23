@@ -58,7 +58,8 @@ struct TodayView: View {
             .fullScreenCover(isPresented: $showRecording) {
                 RecordingView { viewModel.refresh() }
             }
-            .onAppear { viewModel.context = context; viewModel.refresh() }
+            .onAppear { viewModel.context = context; viewModel.refresh(); viewModel.startObserving() }
+            .onDisappear { viewModel.stopObserving() }
         }
     }
 }

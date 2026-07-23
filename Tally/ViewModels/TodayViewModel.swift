@@ -1,6 +1,10 @@
 import Foundation
 import SwiftData
 
+extension Notification.Name {
+    static let tallyDataChanged = Notification.Name("tallyDataChanged")
+}
+
 @MainActor
 final class TodayViewModel: ObservableObject {
     @Published var todayAvailable: Decimal = 0
@@ -12,6 +16,19 @@ final class TodayViewModel: ObservableObject {
     @Published var expensesByDay: [Date: [Expense]] = [:]
 
     var context: ModelContext?
+    private var observer: NSObjectProtocol?
+
+    func startObserving() {
+        observer = NotificationCenter.default.addObserver(
+            forName: .tallyDataChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.refresh()
+        }
+    }
+
+    func stopObserving() {
+        if let ob = observer { NotificationCenter.default.removeObserver(ob) }
+        observer = nil
+    }
 
     func refresh() {
         guard let context = context else { return }
