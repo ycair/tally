@@ -13,8 +13,17 @@ struct JarsView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 VStack(spacing: 4) {
-                    Text("總餘額").font(.caption).foregroundColor(.secondary)
-                    Text("NT$ \(formatted(vm.totalBalance))").font(TallyTheme.Typography.titleAmount)
+                    HStack(spacing: 24) {
+                        VStack(spacing: 2) {
+                            Text("存款").font(.caption).foregroundColor(.secondary)
+                            Text("NT$ \(formatted(vm.savingsBalance))").font(.headline).monospacedDigit()
+                        }
+                        Divider().frame(height: 32)
+                        VStack(spacing: 2) {
+                            Text("零錢罐").font(.caption).foregroundColor(.secondary)
+                            Text("NT$ \(formatted(vm.totalBalance))").font(.headline).monospacedDigit()
+                        }
+                    }
                 }
                 .padding(.vertical, TallyTheme.Spacing.lg).frame(maxWidth: .infinity)
                 .background(TallyTheme.Colors.secondaryBackground)

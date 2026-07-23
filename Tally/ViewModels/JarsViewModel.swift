@@ -5,10 +5,12 @@ import SwiftData
 final class JarsViewModel: ObservableObject {
     @Published var jars: [MoneyJar] = []
     @Published var totalBalance: Decimal = 0
+    @Published var savingsBalance: Decimal = 0
 
     func refresh(context: ModelContext) {
         jars = (try? context.fetch(FetchDescriptor<MoneyJar>())) ?? []
         totalBalance = jars.reduce(0) { $0 + $1.balance }
+        savingsBalance = AppSettings.fetchOrCreate(context: context).savingsBalance
     }
 
     func createJar(name: String, bankCode: String, accountNumber: String, context: ModelContext) {
