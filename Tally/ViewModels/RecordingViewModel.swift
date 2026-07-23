@@ -70,7 +70,11 @@ final class RecordingViewModel: ObservableObject {
         if source == .jar, let jar = selectedJar {
             jar.balance -= expense.amount
         }
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("❌ RecordingViewModel save error: \(error)")
+        }
         return expense
     }
 
@@ -89,11 +93,19 @@ final class RecordingViewModel: ObservableObject {
             expense.lineItems.append(
                 LineItem(name: draft.name, amount: Decimal(string: draft.amountText) ?? 0))
         }
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("❌ RecordingViewModel update error: \(error)")
+        }
     }
 
     func delete(_ expense: Expense, context: ModelContext) {
         context.delete(expense)
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("❌ RecordingViewModel delete error: \(error)")
+        }
     }
 }

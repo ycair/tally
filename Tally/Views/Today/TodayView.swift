@@ -57,6 +57,7 @@ struct TodayView: View {
             .background(TallyTheme.Colors.background)
             .fullScreenCover(isPresented: $showRecording) {
                 RecordingView { viewModel.refresh() }
+                    .modelContext(context)
             }
             .onAppear { viewModel.context = context; viewModel.refresh(); viewModel.startObserving() }
             .onDisappear { viewModel.stopObserving() }
